@@ -1,0 +1,18 @@
+.constructor_ingredients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: calc(var(--offset-base-size) * 4);
+  box-sizing: border-box;
+  height: 100%;
+  padding-bottom: calc(var(--offset-base-size) * 40);
+}
+
+.filling {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
+  row-gap: calc(var(--offset-base-size) * 4);
+  overflow-y: auto;
+}

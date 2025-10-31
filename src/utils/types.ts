@@ -1,7 +1,11 @@
+import type { INGREDIENTS_GROUP_TYPE } from '@/components/burger-ingredients/const/ingredients-group-types';
+
+export type TIngredientsGroupType = keyof typeof INGREDIENTS_GROUP_TYPE;
+
 export type TIngredient = {
   _id: string;
   name: string;
-  type: string;
+  type: TIngredientsGroupType;
   proteins: number;
   fat: number;
   carbohydrates: number;
@@ -11,4 +15,13 @@ export type TIngredient = {
   image_large: string;
   image_mobile: string;
   __v: number;
+};
+
+export type TConstructorIngredient = {
+  _id: string;
+  instanceId: string;
+  name: string;
+  type: TIngredientsGroupType;
+  price: number;
+  image: string;
 };

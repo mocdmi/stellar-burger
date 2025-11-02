@@ -1,6 +1,7 @@
 import { constructorIngredients } from '@/utils/constructor-ingredients';
 import { Button } from '@krgaa/react-developer-burger-ui-components';
 
+import { useModalActions } from '../modal/hooks/use-modal-actions';
 import { ConstructorCard } from './components/constructor-card/constructor-card';
 import { ConstructorIngredients } from './components/constructor-ingredients/constructor-ingredients';
 import { OrderSummary } from './components/order-summary/order-summary';
@@ -21,6 +22,7 @@ export const BurgerConstructor = ({
   console.log(ingredients);
   const { bun, filling } = useConstructorIngredients(constructorIngredients);
   const { total } = useOrder(constructorIngredients);
+  const { openModal } = useModalActions();
 
   return (
     <section className={styles.burger_constructor}>
@@ -34,7 +36,12 @@ export const BurgerConstructor = ({
       <OrderSummary
         total={total}
         actions={
-          <Button size="large" type="primary" htmlType={'button'}>
+          <Button
+            size="large"
+            type="primary"
+            htmlType={'button'}
+            onClick={() => openModal({ modalType: 'order-details' })}
+          >
             Оформить заказ
           </Button>
         }

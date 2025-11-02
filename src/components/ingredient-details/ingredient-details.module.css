@@ -1,0 +1,17 @@
+.ingredient_details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.nutrion_facts {
+  display: flex;
+  column-gap: calc(var(--offset-base-size) * 8);
+}

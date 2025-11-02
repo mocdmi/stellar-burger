@@ -1,0 +1,7 @@
+.ingredient_nutrion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: calc(var(--offset-base-size) * 2);
+  text-align: center;
+}

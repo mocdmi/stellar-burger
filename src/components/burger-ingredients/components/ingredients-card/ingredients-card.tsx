@@ -6,11 +6,13 @@ import styles from './ingredients-card.module.css';
 
 export const IngredientsCard = ({
   ingredient,
+  onClick,
 }: {
   ingredient: TIngredient;
+  onClick?: () => void;
 }): React.JSX.Element => {
   return (
-    <section className={styles.ingredients_card}>
+    <section className={styles.ingredients_card} onClick={onClick}>
       <img
         className={`${styles.image} ml-4 mr-4`}
         src={ingredient.image}

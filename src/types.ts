@@ -23,11 +23,14 @@ export type TLocationState = {
   from?: Location;
 };
 
+export type TOrdersHistoryStatus = 'pending' | 'done';
+
 export type TOrdersHistory = {
   _id: string;
   ingredients: string[];
-  status: 'created' | 'pending' | 'done';
-  number: number;
+  status: TOrdersHistoryStatus;
+  number: string;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };

@@ -7,19 +7,19 @@ import type { TOrder, TOrderIngredient } from '@/orders-history.mock';
 import type { ReactNode } from 'react';
 
 // eslint-disable-next-line css-modules/no-unused-class
-import styles from './order-history-details.module.css';
+import styles from './orders-history-details.module.css';
 
 type TOrderHistoryDetailsProps = {
   order: TOrder;
   renderOrderCard: (ingredient: TOrderIngredient) => ReactNode;
 };
 
-export const OrderHistoryDetails = ({
+export const OrdersHistoryDetails = ({
   order,
   renderOrderCard,
 }: TOrderHistoryDetailsProps): React.JSX.Element => {
   return (
-    <section className={styles.order_history_details}>
+    <section className={styles.orders_history_details}>
       <div className={`${styles.number} text text_type_digits-default mb-10`}>
         #{order.number}
       </div>

@@ -1,4 +1,4 @@
-.orders_card {
+.orders_history_card {
   display: grid;
   grid-template: repeat(3, auto) / repeat(3, 1fr) max-content;
   grid-template-areas:

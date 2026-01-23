@@ -1,43 +1,43 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  ordersHistoryUserWsConnected,
-  ordersHistoryUserWsDisconnected,
-  ordersHistoryUserWsError,
-  ordersHistoryUserWsMessage,
-} from '../actions/orders-history-user-actions';
+  userOrdersHistoryWsConnected,
+  userOrdersHistoryWsDisconnected,
+  userOrdersHistoryWsError,
+  userOrdersHistoryWsMessage,
+} from '../actions/user-orders-history-actions';
 
 import type { TGetOrdersHistoryWsResponse } from '../types';
 
-type TOrderHistoryAllSliceState = {
+type TUserOrderHistorySliceState = {
   connected: boolean;
   error: string | null;
   messages: TGetOrdersHistoryWsResponse | null;
 };
 
-const initialState: TOrderHistoryAllSliceState = {
+const initialState: TUserOrderHistorySliceState = {
   connected: false,
   error: null,
   messages: null,
 };
 
-const ordersHistoryUserSlice = createSlice({
-  name: 'ordersHistoryUser',
+const userOrdersHistorySlice = createSlice({
+  name: 'userOrdersHistory',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(ordersHistoryUserWsConnected, (state) => {
+      .addCase(userOrdersHistoryWsConnected, (state) => {
         state.connected = true;
         state.error = null;
       })
-      .addCase(ordersHistoryUserWsDisconnected, (state) => {
+      .addCase(userOrdersHistoryWsDisconnected, (state) => {
         state.connected = false;
       })
-      .addCase(ordersHistoryUserWsError, (state, action) => {
+      .addCase(userOrdersHistoryWsError, (state, action) => {
         state.error = action.payload;
       })
-      .addCase(ordersHistoryUserWsMessage, (state, action) => {
+      .addCase(userOrdersHistoryWsMessage, (state, action) => {
         state.messages = action.payload;
       });
   },
@@ -46,4 +46,4 @@ const ordersHistoryUserSlice = createSlice({
 export const {
   reducer: ordersHistoryUserReducer,
   reducerPath: ordersHistoryUserReducerPath,
-} = ordersHistoryUserSlice;
+} = userOrdersHistorySlice;

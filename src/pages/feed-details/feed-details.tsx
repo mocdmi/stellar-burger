@@ -1,5 +1,5 @@
-import { OrderHistoryDetails } from '@/components/order-history-details/order-history-details';
-import { OrderIngredientsCard } from '@/components/order-ingredients-card/order-ingredients-card';
+import { OrdersHistoryDetails } from '@/components/orders-history-details/orders-history-details';
+import { OrdersHistoryIngredientsCard } from '@/components/orders-history-ingredients-card/orders-history-ingredients-card';
 import { ordersHistory } from '@/orders-history.mock';
 
 import styles from './feed-details.module.css';
@@ -8,10 +8,10 @@ export const FeedDetailsPage = (): React.JSX.Element => {
   return (
     <section className={styles.feed_details}>
       <div className={styles.content}>
-        <OrderHistoryDetails
+        <OrdersHistoryDetails
           order={ordersHistory[0]}
           renderOrderCard={(ingredient) => (
-            <OrderIngredientsCard key={ingredient._id} ingredient={ingredient} />
+            <OrdersHistoryIngredientsCard key={ingredient._id} ingredient={ingredient} />
           )}
         />
       </div>

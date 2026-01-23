@@ -2,21 +2,21 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { apiMiddleware, apiReducer, apiReducerPath } from './api/api';
-import { ordersHistoryAllMiddleware } from './middlewares/orders-history-all-middleware';
-import { ordersHistoryUserMiddleware } from './middlewares/orders-history-user-middleware';
+import { allOrdersHistoryMiddleware } from './middlewares/all-orders-history-middleware';
+import { userOrdersHistoryMiddleware } from './middlewares/user-orders-history-middleware';
+import {
+  ordersHistoryAllReducer,
+  ordersHistoryAllReducerPath,
+} from './slices/all-orders-history-slice';
 import { authReducer, authReducerPath } from './slices/auth-slice';
 import {
   ingredientsConstructorReducer,
   ingredientsConstructorReducerPath,
 } from './slices/ingredients-constructor-slice';
 import {
-  ordersHistoryAllReducer,
-  ordersHistoryAllReducerPath,
-} from './slices/orders-history-all-slice';
-import {
   ordersHistoryUserReducer,
   ordersHistoryUserReducerPath,
-} from './slices/orders-history-user-slice';
+} from './slices/user-orders-history-slice';
 
 export const store = configureStore({
   reducer: {
@@ -29,8 +29,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       apiMiddleware,
-      ordersHistoryUserMiddleware,
-      ordersHistoryAllMiddleware
+      userOrdersHistoryMiddleware,
+      allOrdersHistoryMiddleware
     ),
   devTools: true,
 });

@@ -6,24 +6,24 @@
   display: grid;
   grid-template: repeat(3, auto) / repeat(2, 1fr);
   grid-template-areas:
-    'finished_numbers in_progress_numbers'
-    'finished_total finished_total'
-    'finished_today finished_today';
+    'done_numbers pending_numbers'
+    'done_total done_total'
+    'done_today done_today';
   gap: calc(var(--offset-base-size) * 15) calc(var(--offset-base-size) * 9);
 }
 
-.finished_numbers {
-  grid-area: finished_numbers;
+.done_numbers {
+  grid-area: done_numbers;
 }
 
-.in_progress_numbers {
-  grid-area: in_progress_numbers;
+.pending_numbers {
+  grid-area: pending_numbers;
 }
 
-.finished_total {
-  grid-area: finished_total;
+.done_total {
+  grid-area: done_total;
 }
 
-.finished_today {
-  grid-area: finished_today;
+.done_today {
+  grid-area: done_today;
 }

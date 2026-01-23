@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 
-import type { TOrder } from '@/orders-history.mock';
+import type { TOrdersHistory } from '@/types';
 import type { ReactNode } from 'react';
 
 import styles from './feed-orders-history.module.css';
 
 type TFeedOrdersHistoryProps = {
-  orders: TOrder[];
-  renderOrderCard: (order: TOrder) => ReactNode;
+  orders: TOrdersHistory[];
+  renderOrdersHistoryCard: (order: TOrdersHistory) => ReactNode;
 };
 
 export const FeedOrdersHistory = ({
   orders,
-  renderOrderCard,
+  renderOrdersHistoryCard: renderOrderCard,
 }: TFeedOrdersHistoryProps): React.JSX.Element => {
   return (
     <div className={`${styles.feed_orders_history} mb-10`}>

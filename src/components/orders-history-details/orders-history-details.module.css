@@ -1,4 +1,4 @@
-.order_history_details {
+.orders_history_details {
   display: grid;
   grid-template: repeat(6, auto) / 1fr max-content;
   grid-template-areas:

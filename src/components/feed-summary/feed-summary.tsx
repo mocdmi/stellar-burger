@@ -1,45 +1,48 @@
 import { NumbersList } from './components/numbers-list/numbers-list';
 import { Summary } from './components/summary/summary';
+import { useSplitOrdersNumbers } from './hooks/useSplitOrdersNumbers';
+
+import type { TOrdersHistory } from '@/types';
 
 import styles from './feed-summary.module.css';
 
 type TFeedSummaryProps = {
-  finishedNumbers: string[];
-  inProgressNumbers: string[];
-  finishedTotal: string;
-  finishedToday: string;
+  orders: TOrdersHistory[];
+  totalOrders: number;
+  totalTodayOrders: number;
 };
 
 export const FeedSummary = ({
-  finishedNumbers,
-  inProgressNumbers,
-  finishedTotal,
-  finishedToday,
+  orders,
+  totalOrders,
+  totalTodayOrders,
 }: TFeedSummaryProps): React.JSX.Element => {
+  const splitNumbers = useSplitOrdersNumbers(orders);
+
   return (
     <div className={styles.feed_summary}>
       <div className={styles.content}>
         <NumbersList
-          className={styles.finished_numbers}
+          className={styles.done_numbers}
           title="Готовы:"
-          numbers={finishedNumbers}
-          type="finished"
+          numbers={(splitNumbers.done ?? []).slice(0, 20)}
+          type="done"
         />
         <NumbersList
-          className={styles.in_progress_numbers}
+          className={styles.pending_numbers}
           title="В работе:"
-          numbers={inProgressNumbers}
-          type="in_progress"
+          numbers={(splitNumbers.pending ?? []).slice(0, 20)}
+          type="pending"
         />
         <Summary
-          className={styles.finished_total}
+          className={styles.done_total}
           title="Выполнено за все время:"
-          sum={finishedTotal}
+          total={totalOrders}
         />
         <Summary
-          className={styles.finished_today}
-          title="Выполнено за все сегодня:"
-          sum={finishedToday}
+          className={styles.done_today}
+          title="Выполнено за сегодня:"
+          total={totalTodayOrders}
         />
       </div>
     </div>

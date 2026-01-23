@@ -2,17 +2,17 @@ import { CurrencyIcon } from '@krgaa/react-developer-burger-ui-components';
 
 import type { TOrderIngredient } from '@/orders-history.mock';
 
-import styles from './order-ingredients-card.module.css';
+import styles from './orders-history-ingredients-card.module.css';
 
-type TOrderIngredientsCardProps = {
+type TOrdersIngredientsCardProps = {
   ingredient: TOrderIngredient;
 };
 
-export const OrderIngredientsCard = ({
+export const OrdersHistoryIngredientsCard = ({
   ingredient,
-}: TOrderIngredientsCardProps): React.JSX.Element => {
+}: TOrdersIngredientsCardProps): React.JSX.Element => {
   return (
-    <section className={styles.order_ingredients_card}>
+    <section className={styles.orders_ingredients_card}>
       <div className={styles.ingredient_image}>
         <img src={ingredient.image} alt="" />
       </div>

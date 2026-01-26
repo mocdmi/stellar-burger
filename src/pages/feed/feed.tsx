@@ -1,9 +1,9 @@
 import { FeedSummary } from '@/components/feed-summary/feed-summary';
 import { OrdersHistoryCard } from '@/components/orders-history-card/orders-history-card';
 import { OrdersHistory } from '@/components/orders-history/orders-history';
-import { useModalRoute } from '@/hooks/use-modal-route';
+import { useDirectNavigation } from '@/hooks/use-direct-navigation';
 import { Preloader } from '@krgaa/react-developer-burger-ui-components';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useFeed } from './hooks/useFeed';
 
@@ -13,10 +13,11 @@ export const FeedPage = (): React.JSX.Element => {
   const { orders, totalTodayOrders, totalOrders, isConnected, isMessageLoading } =
     useFeed();
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
-  const { shouldShowOnlyOutlet } = useModalRoute();
+  const { isDirectNavigation, isModal } = useDirectNavigation(!!id);
 
-  if (id && shouldShowOnlyOutlet) {
+  if (isDirectNavigation) {
     return <Outlet />;
   }
 
@@ -40,7 +41,9 @@ export const FeedPage = (): React.JSX.Element => {
                     key={order._id}
                     order={order}
                     onClick={() => {
-                      void navigate(`/feed/${order._id}?modal=true`);
+                      void navigate(`/feed/${order._id}`, {
+                        state: { backgroundLocation: location },
+                      });
                     }}
                   />
                 )}
@@ -54,7 +57,7 @@ export const FeedPage = (): React.JSX.Element => {
           )}
         </div>
       </section>
-      <Outlet />
+      {isModal && <Outlet />}
     </>
   );
 };

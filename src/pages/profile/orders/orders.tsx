@@ -1,8 +1,8 @@
 import { OrdersHistoryCard } from '@/components/orders-history-card/orders-history-card';
 import { OrdersHistory } from '@/components/orders-history/orders-history';
-import { useModalRoute } from '@/hooks/use-modal-route';
+import { useDirectNavigation } from '@/hooks/use-direct-navigation';
 import { Preloader } from '@krgaa/react-developer-burger-ui-components';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useOrders } from './hooks/useOrders';
 
@@ -11,10 +11,11 @@ import styles from './orders.module.css';
 export const OrdersPage = (): React.JSX.Element => {
   const { isConnected, isMessageLoading, orders } = useOrders();
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
-  const { shouldShowOnlyOutlet } = useModalRoute();
+  const { isDirectNavigation, isModal } = useDirectNavigation(!!id);
 
-  if (id && shouldShowOnlyOutlet) {
+  if (isDirectNavigation) {
     return <Outlet />;
   }
 
@@ -36,14 +37,16 @@ export const OrdersPage = (): React.JSX.Element => {
                 order={order}
                 isShowStatus
                 onClick={() => {
-                  void navigate(`/profile/orders/${order._id}?modal=true`);
+                  void navigate(`/profile/orders/${order._id}`, {
+                    state: { backgroundLocation: location },
+                  });
                 }}
               />
             )}
           />
         )}
       </section>
-      <Outlet />
+      {isModal && <Outlet />}
     </>
   );
 };

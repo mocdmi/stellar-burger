@@ -37,8 +37,8 @@ export const Modal = (): React.JSX.Element | null => {
 
   return createPortal(
     <div className={styles.wrapper}>
-      <div className={styles.modal}>
-        <button className={styles.close_button} onClick={close}>
+      <div className={styles.modal} data-cy="modal">
+        <button className={styles.close_button} onClick={close} data-cy="modal-close">
           <CloseIcon type="primary" />
         </button>
         {payload && <ModalComponent payload={payload} />}
